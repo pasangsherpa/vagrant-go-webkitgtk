@@ -5,9 +5,8 @@ if [[ `facter virtual` != "virtualbox" ]]; then
     exit 0
 fi
 
-mkdir -p /mnt/virtualbox
-mount -o loop /home/vagrant/VBoxGuest*.iso /mnt/virtualbox
-sh /mnt/virtualbox/VBoxLinuxAdditions.run
-ln -s /opt/VBoxGuestAdditions-*/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
-umount /mnt/virtualbox
-rm -rf /home/vagrant/VBoxGuest*.iso
+#!/bin/bash
+apt-get -y install --no-install-recommends libdbus-1-3
+aptitude -y install dkms
+apt-get -y install virtualbox-guest-utils
+sudo rm -rf VBoxGuestAdditions.iso
