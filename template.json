@@ -91,7 +91,7 @@
   "variables": {
     "atlas_username": "pasangsherpa",
     "atlas_name": "go-webkitgtk",
-    "artifactversion": "0.0.1",
+    "artifactversion": "0.0.3",
     "mirror": "http://releases.ubuntu.com"
   }
 }
