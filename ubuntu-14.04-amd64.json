@@ -58,10 +58,24 @@
     "virtualbox_version_file": ".vbox_version",
     "vm_name": "{{ user `template` }}"
   }],
-  "post-processors": [{
-    "output": "{{user `box_basename`}}.{{.Provider}}.box",
-    "type": "vagrant"
-  }],
+  "push": {
+    "name": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+    "vcs": true
+  },
+  "post-processors": [
+    [{
+      "type": "vagrant",
+      "keep_input_artifact": false
+    }, {
+      "type": "atlas",
+      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "virtualbox",
+        "version": "{{user `version`}}"
+      }
+    }]
+  ],
   "provisioners": [{
     "destination": "/tmp/bento-metadata.json",
     "source": "{{user `metadata`}}",
@@ -89,9 +103,9 @@
     "type": "shell"
   }],
   "variables": {
+    "atlas_username": "pasangsherpa",
+    "atlas_name": "go-webkitgtk",
     "box_basename": "ubuntu-14.04",
-    "build_timestamp": "{{isotime \"20060102150405\"}}",
-    "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
@@ -104,6 +118,6 @@
     "name": "ubuntu-14.04",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "ubuntu-14.04-amd64",
-    "version": "0.1.TIMESTAMP"
+    "version": "0.0.6"
   }
 }
