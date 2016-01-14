@@ -15,9 +15,6 @@ fi
 
 # ensure the correct kernel headers are installed
 apt-get -y install linux-headers-`uname -r`;
-apt-get -y install --no-install-recommends libdbus-1-3
-aptitude -y install dkms
-apt-get -y install virtualbox-guest-utils
 
 # update package index on boot
 cat <<EOF >/etc/init/refresh-apt.conf;
