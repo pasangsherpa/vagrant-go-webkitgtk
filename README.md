@@ -16,3 +16,6 @@
         $ git clone git@github.com:pasangsherpa/vagrant-go-webkitgtk.git
         $ cd vagrant-go-webkitgtk
         $ packer build ubuntu-14.04-amd64.json
+        $ vagrant box add go-webkitgtk ubuntu-14.04.virtualbox.box
+        $ vagrant init go-webkitgtk
+        $ vagrant up --provider virtualbox
