@@ -1,7 +1,7 @@
 #!/bin/sh -eux
 
 # Install wekitgtk
-apt-get -y install git libwebkit2gtk-3.0-dev;
+apt-get -y install --no-install-recommends -y -q libwebkit2gtk-3.0-dev libgtk-3-dev libcairo2-dev libglib2.0-dev
 
 # Variables
 go_version="go1.5";
