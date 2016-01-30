@@ -11,7 +11,7 @@
         $ vagrant up --provider virtualbox
 
 
-3. Alternatively, you can build the box from using [packer](https://www.packer.io/intro/getting-started/setup.html): 
+3. Alternatively, you can build the box using [packer](https://www.packer.io/intro/getting-started/setup.html): 
     
         $ git clone git@github.com:pasangsherpa/vagrant-go-webkitgtk.git
         $ cd vagrant-go-webkitgtk
