@@ -23,4 +23,6 @@ grep '^export PATH' $HOME/.bashrc || echo "export PATH=$PATH:/usr/local/go/bin:$
 
 # Install godep, see https://github.com/tools/godep
 GOPATH=$HOME/go /usr/local/go/bin/go get github.com/tools/godep
+
+# Install webloop (Scriptable, headless WebKit with a Go API), see https://github.com/pasangsherpa/webloop
 GOPATH=$HOME/go /usr/local/go/bin/go get -u -tags gtk_3_10 github.com/pasangsherpa/webloop/...
