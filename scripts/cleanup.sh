@@ -15,20 +15,29 @@ dpkg --list \
     | grep -v `uname -r` \
     | xargs apt-get -y purge;
 
-# Delete Linux source
+# # Delete Linux source
 dpkg --list \
     | awk '{ print $2 }' \
     | grep linux-source \
     | xargs apt-get -y purge;
 
-# Delete development packages
-dpkg --list \
-    | awk '{ print $2 }' \
-    | grep -- '-dev$' \
-    | xargs apt-get -y purge;
-
-# Delete X11 libraries
-apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6;
+# Delete unused development packages
+apt-get -y purge \
+    libatk-bridge2.0-dev \
+    libice-dev \
+    libsm-dev \
+    libx11-dev \
+    libxau-dev \
+    libxcb-render0-dev \
+    libxcb-shm0-dev \
+    libxcb1-dev \
+    libxdamage-dev \
+    libxdmcp-dev \
+    libxext-dev \
+    libxfixes-dev \
+    libxinerama-dev \
+    libxrandr-dev \
+    libxrender-dev;
 
 # Delete obsolete networking
 apt-get -y purge ppp pppconfig pppoeconf;
