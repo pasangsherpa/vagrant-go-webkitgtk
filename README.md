@@ -1,5 +1,5 @@
 # vagrant-go-webkitgtk
-> Vagrant box of Ubuntu 14.04 (64 bit) with Golang, godep and WebKitGTK+ 2
+> Vagrant box of Ubuntu 14.04 (64 bit) with [Golang](https://golang.org/), [godep](https://godoc.org/github.com/tools/godep), [WebKitGTK+](http://webkitgtk.org/), and [webloop](https://github.com/pasangsherpa/webloop)
 
 ### Installation
 
@@ -15,11 +15,11 @@
     
     	// base box to build on top of
     	$ vagrant box add boxcutter/ubuntu1404 --provider virtualbox
-    	// clone the project
-        $ git clone git@github.com:pasangsherpa/vagrant-go-webkitgtk.git
+
+    	$ git clone git@github.com:pasangsherpa/vagrant-go-webkitgtk.git
         $ cd vagrant-go-webkitgtk
-        // packer build
         $ packer build ubuntu-14.04-amd64.json
+
         $ vagrant box add go-webkitgtk ubuntu-14.04.virtualbox.box
         $ vagrant init go-webkitgtk
         $ vagrant up --provider virtualbox
