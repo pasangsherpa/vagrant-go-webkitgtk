@@ -3,9 +3,9 @@
 # Install wekitgtk
 apt-get -y install --no-install-recommends -yq \
 	git \
-    libwebkit2gtk-3.0-dev \
-    libgtk-3-dev \
-    libcairo2-dev
+	libwebkit2gtk-3.0-dev \
+	libgtk-3-dev \
+	libcairo2-dev
 
 # Variables
 go_version="go1.5"
