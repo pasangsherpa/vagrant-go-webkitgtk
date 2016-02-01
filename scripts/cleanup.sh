@@ -21,24 +21,6 @@ dpkg --list \
     | grep linux-source \
     | xargs apt-get -y purge;
 
-# Delete unused development packages
-apt-get -y purge \
-    libatk-bridge2.0-dev \
-    libice-dev \
-    libsm-dev \
-    libx11-dev \
-    libxau-dev \
-    libxcb-render0-dev \
-    libxcb-shm0-dev \
-    libxcb1-dev \
-    libxdamage-dev \
-    libxdmcp-dev \
-    libxext-dev \
-    libxfixes-dev \
-    libxinerama-dev \
-    libxrandr-dev \
-    libxrender-dev;
-
 # Delete obsolete networking
 apt-get -y purge ppp pppconfig pppoeconf;
 
