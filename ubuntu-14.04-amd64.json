@@ -4,7 +4,7 @@
     "box_basename": "ubuntu-14.04-amd64",
     "atlas_username": "pasangsherpa",
     "atlas_name": "go-webkitgtk",    
-    "version": "0.0.16"
+    "version": "0.0.17"
   },
   "builders": [{
     "type": "virtualbox-ovf",

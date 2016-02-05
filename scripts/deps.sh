@@ -5,7 +5,8 @@ apt-get -y install --no-install-recommends -yq \
     git \
     libwebkit2gtk-3.0-dev \
     libgtk-3-dev \
-    libcairo2-dev
+    libcairo2-dev \
+    xvfb
 
 # Variables
 go_version="go1.5"
@@ -26,3 +27,35 @@ GOPATH=$HOME/go /usr/local/go/bin/go get github.com/tools/godep
 
 # Install webloop (Scriptable, headless WebKit with a Go API), see https://github.com/pasangsherpa/webloop
 GOPATH=$HOME/go /usr/local/go/bin/go get -u -tags gtk_3_10 github.com/pasangsherpa/webloop/...
+
+# Workaround for https://github.com/mitchellh/vagrant/issues/6074
+cat >/etc/init/workaround-vagrant-bug-6074.conf <<EOL
+start on filesystem
+task
+
+env MOUNTPOINT=/vagrant
+
+script
+  until mountpoint -q \$MOUNTPOINT; do sleep 1; done
+  /sbin/initctl emit --no-wait vagrant-mounted MOUNTPOINT=\$MOUNTPOINT
+end script
+EOL
+
+# Add xvfb init script
+cat >/etc/init/xvfb.conf <<EOL
+description "xvfb init"
+start on vagrant-mounted
+stop on runlevel [!2345]
+
+script
+    env DISPLAY=:0.0
+    XVFB=/usr/bin/Xvfb
+    XVFBARGS="\$DISPLAY -ac -screen 0 1024x768x16 +extension RANDR"
+    PIDFILE="/var/xvfb.pid"
+
+    echo "export DISPLAY=\$DISPLAY" >> $HOME/.bashrc
+
+    exec >/var/log/upstart/xvfb.log 2>&1
+    exec /sbin/start-stop-daemon --start --quiet --pidfile \$PIDFILE --make-pidfile --background --exec \$XVFB -- \$XVFBARGS
+end script
+EOL
